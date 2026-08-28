@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo</title>
+    <link rel="stylesheet" src="style.css";
+  </head>
+  <body>
+    <h1>My Tasks</h1>
+    <div style="margin-bottom: 10px;">
+      <button type="button" id="allButton">All</button>
+      <button type="button" id="activeButton">Active</button>
+      <button type="button" id="completedButton">Completed</button>
+      <button type="button" id="sortButton">Sort A-Z</button>
+    </div>
+    <div id="taskStats" style="margin-bottom: 5px;"></div>
+    <input id="taskInput" type="text" placeholder="Enter your task" />
+    <button type="button" id="addButton">Add</button>
+    <ol id="taskList"></ol>
+    <script src="script.js"></script>
+  </body>
+</html>
