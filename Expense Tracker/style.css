@@ -1,30 +1,48 @@
-body{
+/* --- APP LAYOUT BASICS & BACKGROUND --- */
+body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #fcfcfc;
-    margin: 40px;
-    color: #111;
+    background-color: #f3f4f6; /* Modern off-white / light-grey tone */
+    margin: 0;
+    padding: 30px;
+    color: #1f2937;
+    display: flex;
+    justify-content: center;
 }
 
-.expense-form-container{
+.main-dashboard-container {
+    width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
-.h2{
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: #000;
+/* --- REUSABLE FLAT CARDS PANELS --- */
+.panel-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.expense-form{
+h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #111111;
+}
+
+/* --- TOP HORIZONTAL INPUT FORM (Retaining your precise properties) --- */
+.expense-form {
     display: flex;
     align-items: flex-end;
     gap: 16px;
     flex-wrap: wrap;
 }
 
-.input-group{
+.input-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -32,50 +50,55 @@ body{
     min-width: 200px;
 }
 
-label{
-    margin-bottom: 5px;
+label {
     font-size: 13px;
-    font-weight: 500;
-    color: #444;
+    font-weight: bold;
+    color: #4b5563;
 }
 
 input[type="text"],
 input[type="number"],
-select{
-    height: 40px;
-    padding: 0 12px;
+select {
+    height: 42px;
+    padding: 0 14px;
     font-size: 14px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
     background-color: #fff;
     outline: none;
     box-sizing: border-box;
     width: 100%;
     color: #333;
+    transition: border-color 0.2s;
 }
 
-input::placeholder{
-    color: #a0aec0;
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #2563eb;
 }
 
-select{
+input::placeholder {
+    color: #9ca3af;
+}
+
+select {
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
-    background-position: right 12px center;
+    background-position: right 14px center;
     background-size: 16px;
     padding-right: 36px;
 }
 
-/* Blue main action button */
 #addExpenseButton {
     background-color: #2563eb;
     color: white;
     border: none;
-    height: 40px;
+    height: 42px;
     padding: 0 24px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
     display: inline-flex;
@@ -85,13 +108,242 @@ select{
     transition: background-color 0.2s;
 }
 
-/* Button hover feedback */
 #addExpenseButton:hover {
     background-color: #1d4ed8;
 }
 
-/* Tiny inline spacing adjustment for the '+' icon symbol */
 .plus-icon {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
+}
+
+/* --- LOWER DASHBOARD TWO-COLUMN LAYOUT --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+/* --- HORIZONTAL FILTER TABS PILLS --- */
+.filter-pills-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.filter-pill {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #4b5563;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.filter-pill.active {
+    background-color: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+
+/* --- LOGS DATA TABLE COMPONENT --- */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+}
+
+.expense-table th {
+    color: #6b7280;
+    font-weight: 500;
+    padding: 14px 12px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.expense-table td {
+    padding: 16px 12px;
+    border-bottom: 1px solid #f3f4f6;
+    color: #1f2937;
+}
+
+.expense-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Precise Rounded Badge Variants */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.badge-food { background-color: #ecfdf5; color: #10b981; }
+.badge-transport { background-color: #eff6ff; color: #3b82f6; }
+.badge-entertainment { background-color: #fdf2f8; color: #ec4899; }
+.badge-other { background-color: #fffbeb; color: #f59e0b; }
+
+/* Micro Trash Container Action Button */
+.delete-row-btn {
+    background: none;
+    border: 1px solid #fee2e2;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+    font-size: 12px;
+}
+
+.delete-row-btn:hover {
+    background-color: #fee2e2;
+}
+
+/* --- RIGHT SIDEBAR DATA DECKS --- */
+.stats-sidebar-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sidebar-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.sidebar-card-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+    color: #111111;
+}
+
+.header-icon {
+    font-size: 16px;
+}
+
+.metric-label {
+    font-size: 13px;
+    color: #6b7280;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.metric-value-total {
+    font-size: 28px;
+    font-weight: 800;
+    color: #10b981; /* Matching Green total metric values */
+    margin: 0;
+}
+
+/* Category Vertical Breakdown List Items */
+.breakdown-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.breakdown-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-name-tag {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #374151;
+}
+
+.color-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.dot-food { background-color: #10b981; }
+.dot-transport { background-color: #3b82f6; }
+.dot-entertainment { background-color: #ec4899; }
+.dot-other { background-color: #f59e0b; }
+
+.category-amount-tag {
+    font-weight: 700;
+    color: #111111;
+}
+
+/* Light Indigo/Blue Banner Message Footer Box */
+.insight-tip-banner {
+    background-color: #eff6ff;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border: 1px dashed #bfdbfe;
+}
+
+.tip-bulb-icon {
+    font-size: 18px;
+}
+
+.insight-tip-banner p {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1e40af;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* --- DYNAMIC STATES AND MODIFIERS --- */
+.table-empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6b7280;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.table-empty-state svg {
+    opacity: 0.4;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- RESPONSIVE ADJUSTMENT VIEWPORTS --- */
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
 }

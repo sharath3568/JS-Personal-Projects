@@ -1,41 +1,218 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Expense Tracker</title>
-    <script src="style.css"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="expense-form-container">
+
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="main-dashboard-container">
+
+      <!-- Add Expense Form -->
+      <div class="panel-card form-card-wrapper">
         <h2>Add New Expense</h2>
 
         <form class="expense-form">
-            <div class="input-group">
-                <label for="expenseDescriptionInput">Description</label>
-                <input id="expenseDescriptionInput" type="text" placeholder="Enter description">
-            </div>
+          <div class="input-group">
+            <label for="expenseDescriptionInput">Description</label>
+            <input
+              id="expenseDescriptionInput"
+              type="text"
+              placeholder="Enter description" />
+          </div>
 
-            <div class="input-group">
-                <label for="amountInput">Amount</label>
-                <input id="amountInput" type="number" placeholder="Enter Amount">
-            </div>
+          <div class="input-group">
+            <label for="amountInput">Amount</label>
+            <input
+              id="amountInput"
+              type="number"
+              placeholder="Enter Amount" />
+          </div>
 
-            <div class="input-group">
-                <label for="categoryInput">Category</label>
-                <select id="categoryInput">
-                    <option value="food">Food</option>
-                    <option value="transport">Transport</option>
-                    <option value="entertainment">Entertainment</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
+          <div class="input-group">
+            <label for="categoryInput">Category</label>
+            <select id="categoryInput">
+              <option value="select" disabled>Select Category</option>
+              <option value="food">Food</option>
+              <option value="transport">Transport</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
 
-            <button type="button" id="addExpenseButton">
-                <span class="plus-icon">+</span> Add Expense
-            </button>
+          <button type="button" id="addExpenseButton">
+            <span class="plus-icon">+</span>
+            Add Expense
+          </button>
         </form>
+      </div>
+
+      <!-- Lower Dashboard -->
+      <div class="dashboard-grid">
+
+        <!-- Expenses -->
+        <div class="panel-card logs-column">
+          <h2>Expenses</h2>
+
+          <!-- Filters -->
+          <div class="filter-pills-row" id="filterPillContainer">
+            <button class="filter-pill active" data-filter="all">
+              All
+            </button>
+
+            <button class="filter-pill" data-filter="food">
+              Food
+            </button>
+
+            <button class="filter-pill" data-filter="transport">
+              Transport
+            </button>
+
+            <button class="filter-pill" data-filter="entertainment">
+              Entertainment
+            </button>
+
+            <button class="filter-pill" data-filter="other">
+              Other
+            </button>
+          </div>
+
+          <!-- Expense Table -->
+          <div class="table-container">
+            <table class="expense-table">
+
+              <thead>
+                <tr>
+                  <th style="width: 50px;">#</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Category</th>
+                  <th style="width: 60px; text-align: center;">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody id="expenseTableBody">
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State -->
+          <div class="table-empty-state hidden" id="emptyState">
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5">
+              <path
+                d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+              <path d="M12 7v5M12 16h.01" />
+            </svg>
+
+            <p>No Expenses Found</p>
+          </div>
+
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="stats-sidebar-column">
+
+          <!-- Total Summary -->
+          <div class="panel-card summary-card">
+
+            <div class="sidebar-card-header">
+              <span class="header-icon">📑</span>
+              <h3>Total Summary</h3>
+            </div>
+
+            <span class="metric-label">
+              Total Expenses
+            </span>
+
+            <h1 class="metric-value-total" id="totalBalanceDisplay"></h1>
+          </div>
+
+          <!-- Category Summary -->
+          <div class="panel-card breakdown-card">
+
+            <div class="sidebar-card-header">
+              <span class="header-icon">📊</span>
+              <h3>Category Summary</h3>
+            </div>
+
+            <ul class="breakdown-list">
+
+              <li>
+                <div class="category-name-tag">
+                  <span class="color-dot dot-food"></span>
+                  Food
+                </div>
+
+                <span
+                  id="summaryFoodValue"
+                  class="category-amount-tag">
+                  ₹0
+                </span>
+              </li>
+
+              <li>
+                <div class="category-name-tag">
+                  <span class="color-dot dot-transport"></span>
+                  Transport
+                </div>
+
+                <span
+                  id="summaryTransportValue"
+                  class="category-amount-tag">
+                  ₹0
+                </span>
+              </li>
+
+              <li>
+                <div class="category-name-tag">
+                  <span class="color-dot dot-entertainment"></span>
+                  Entertainment
+                </div>
+
+                <span
+                  id="summaryEntertainmentValue"
+                  class="category-amount-tag">
+                  ₹0
+                </span>
+              </li>
+
+              <li>
+                <div class="category-name-tag">
+                  <span class="color-dot dot-other"></span>
+                  Other
+                </div>
+
+                <span
+                  id="summaryOtherValue"
+                  class="category-amount-tag">
+                  ₹0
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Insight -->
+          <div class="insight-tip-banner">
+            <span class="tip-bulb-icon">💡</span>
+            <p>
+              Track your expenses daily and save more!
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
