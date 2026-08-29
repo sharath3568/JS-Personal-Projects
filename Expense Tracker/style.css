@@ -91,7 +91,7 @@ select {
     padding-right: 36px;
 }
 
-#addExpenseButton {
+.addExpenseButton {
     background-color: #2563eb;
     color: white;
     border: none;
@@ -108,8 +108,53 @@ select {
     transition: background-color 0.2s;
 }
 
-#addExpenseButton:hover {
+.addExpenseButton:hover {
     background-color: #1d4ed8;
+}
+
+/* Base shared dimensions */
+.updateExpenseButton,
+#cancelEditButton {
+    height: 42px;
+    padding: 0 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+/* Update Expense Button (Primary Action - Emerald Green) */
+.updateExpenseButton {
+    background-color: #10b981;
+    color: white;
+    border: none;
+}
+
+.updateExpenseButton:hover {
+    background-color: #059669;
+}
+
+/* Cancel Button (Secondary Action - Neutral / Muted) */
+#cancelEditButton {
+    display: none;
+    background-color: transparent;
+    color: #64748b;
+    border: 1px solid #cbd5e1;
+}
+
+#cancelEditButton.is-visible{
+    display: inline-flex;
+}
+
+#cancelEditButton:hover {
+    background-color: #f8fafc;
+    color: #334155;
+    border-color: #94a3b8;
 }
 
 .plus-icon {
@@ -216,6 +261,22 @@ select {
 
 .delete-row-btn:hover {
     background-color: #fee2e2;
+}
+
+.edit-row-btn {
+    background: none;
+    border: 1px solid #e0f2fe;
+    color: #0284c7;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+    font-size: 12px;
+}
+
+.edit-row-btn:hover {
+    background: #f0f9ff;
+    border-color: #bae6fd;
 }
 
 /* --- RIGHT SIDEBAR DATA DECKS --- */
@@ -339,6 +400,12 @@ select {
 
 .hidden {
     display: none !important;
+}
+
+.action{
+    text-align: center;
+    display: flex;
+    gap: 10px;
 }
 
 /* --- RESPONSIVE ADJUSTMENT VIEWPORTS --- */
