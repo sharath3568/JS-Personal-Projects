@@ -12,27 +12,25 @@
 
 <body>
 
-    <main class="auth-page">
+    <!-- =========================
+         AUTH PAGE
+    ========================== -->
+
+    <main id="authPage" class="auth-page">
 
         <section class="auth-card">
 
-            <!-- Brand -->
             <div class="brand-section">
-
-                <div class="brand-icon">
-                    ₹
-                </div>
+                <div class="brand-icon">₹</div>
 
                 <h1>Expense Tracker</h1>
 
                 <p>
                     Keep your expenses organized, wherever you are.
                 </p>
-
             </div>
 
 
-            <!-- Auth Tabs -->
             <div class="auth-tabs">
 
                 <button
@@ -52,7 +50,7 @@
             </div>
 
 
-            <!-- ==================== LOGIN ==================== -->
+            <!-- LOGIN -->
 
             <form id="login-form" class="auth-form">
 
@@ -83,19 +81,9 @@
 
                 <div class="form-group">
 
-                    <div class="label-row">
-
-                        <label for="login-password">
-                            Password
-                        </label>
-
-                        <button
-                            type="button"
-                            class="forgot-password">
-                            Forgot password?
-                        </button>
-
-                    </div>
+                    <label for="login-password">
+                        Password
+                    </label>
 
                     <input
                         type="password"
@@ -111,20 +99,17 @@
                     type="submit"
                     class="primary-auth-button">
 
-                    <span>Sign In</span>
+                    Sign In
 
                 </button>
 
 
-                <p
-                    id="login-message"
-                    class="auth-message">
-                </p>
+                <p id="login-message" class="auth-message"></p>
 
             </form>
 
 
-            <!-- ==================== SIGNUP ==================== -->
+            <!-- SIGNUP -->
 
             <form
                 id="signup-form"
@@ -194,20 +179,16 @@
                     type="submit"
                     class="primary-auth-button">
 
-                    <span>Create Account</span>
+                    Create Account
 
                 </button>
 
 
-                <p
-                    id="signup-message"
-                    class="auth-message">
-                </p>
+                <p id="signup-message" class="auth-message"></p>
 
             </form>
 
 
-            <!-- Footer -->
             <div class="auth-footer">
 
                 <p>
@@ -219,6 +200,488 @@
         </section>
 
     </main>
+
+
+    <!-- =========================
+         PROJECTS PAGE
+    ========================== -->
+
+    <main id="projectsPage" class="projects-page hidden">
+
+        <header class="app-header">
+
+            <div class="app-brand">
+
+                <div class="small-brand-icon">
+                    ₹
+                </div>
+
+                <div>
+                    <h1>Expense Tracker</h1>
+                    <span id="userEmail"></span>
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button">
+
+                Sign Out
+
+            </button>
+
+        </header>
+
+
+        <section class="projects-container">
+
+            <div class="projects-heading">
+
+                <div>
+                    <h2>Your Projects</h2>
+
+                    <p>
+                        Manage your expense projects from one place.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="newProjectButton"
+                    class="primary-button">
+
+                    + New Project
+
+                </button>
+
+            </div>
+
+
+            <!-- CREATE PROJECT -->
+
+            <div
+                id="projectFormCard"
+                class="project-form-card hidden">
+
+                <h3>Create New Project</h3>
+
+                <form id="projectForm">
+
+                    <div class="project-form-grid">
+
+                        <div class="form-group">
+
+                            <label for="projectName">
+                                Project Name
+                            </label>
+
+                            <input
+                                id="projectName"
+                                type="text"
+                                placeholder="Project Name"
+                                required />
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="projectDescription">
+                                Description
+                            </label>
+
+                            <input
+                                id="projectDescription"
+                                type="text"
+                                placeholder="Project Description" />
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="project-form-actions">
+
+                        <button
+                            type="button"
+                            id="cancelProjectButton"
+                            class="secondary-button">
+
+                            Cancel
+
+                        </button>
+
+                        <button
+                            type="submit"
+                            id="createProjectButton"
+                            class="primary-button">
+
+                            Create Project
+
+                        </button>
+
+                    </div>
+
+
+                    <p
+                        id="projectMessage"
+                        class="project-message">
+                    </p>
+
+                </form>
+
+            </div>
+
+
+            <!-- PROJECT LIST -->
+
+            <div
+                id="projectsGrid"
+                class="projects-grid">
+            </div>
+
+
+            <div
+                id="noProjectsMessage"
+                class="no-projects hidden">
+
+                <div class="empty-project-icon">
+                    📁
+                </div>
+
+                <h3>No projects yet</h3>
+                <p>
+                    Create your first expense project to get started.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- =========================
+     PROJECT DETAIL PAGE
+========================== -->
+
+<main id="projectDetailPage" class="project-detail-page hidden">
+
+    <header class="app-header">
+
+        <div class="app-brand">
+
+            <button
+                type="button"
+                id="backToProjectsButton"
+                class="back-button">
+                ←
+            </button>
+
+            <div class="small-brand-icon">
+                ₹
+            </div>
+
+            <div>
+                <h1 id="detailProjectName">
+                    Project
+                </h1>
+
+                <span id="detailProjectDescription">
+                </span>
+            </div>
+
+        </div>
+
+        <button
+            type="button"
+            id="detailLogoutButton"
+            class="logout-button">
+            Sign Out
+        </button>
+
+    </header>
+
+
+    <section class="detail-container">
+
+        <!-- HEADER -->
+
+        <div class="detail-heading">
+
+            <div>
+                <h2>Expense Overview</h2>
+
+                <p>
+                    Track and manage your project expenses.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                id="addExpenseButton"
+                class="primary-button">
+
+                + Add Expense
+
+            </button>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="summary-grid">
+
+            <div class="summary-card">
+
+                <span class="summary-label">
+                    Total Expenses
+                </span>
+
+                <strong id="totalExpenseAmount">
+                    ₹0.00
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span class="summary-label">
+                    This Month
+                </span>
+
+                <strong id="monthExpenseAmount">
+                    ₹0.00
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span class="summary-label">
+                    Number of Expenses
+                </span>
+
+                <strong id="expenseCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- FILTER -->
+
+        <div class="expense-toolbar">
+
+            <div>
+
+                <label for="expenseMonth">
+                    Month
+                </label>
+
+                <input
+                    type="month"
+                    id="expenseMonth" />
+
+            </div>
+
+
+            <button
+                type="button"
+                id="clearMonthButton"
+                class="secondary-button">
+
+                All Expenses
+
+            </button>
+
+        </div>
+
+
+        <!-- EXPENSE FORM -->
+
+        <div
+            id="expenseFormCard"
+            class="project-form-card hidden">
+
+            <h3 id="expenseFormTitle">
+                Add Expense
+            </h3>
+
+
+            <form id="expenseForm">
+
+                <input
+                    type="hidden"
+                    id="expenseId" />
+
+
+                <div class="expense-form-grid">
+
+                    <div class="form-group">
+
+                        <label for="expenseDate">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="expenseDate"
+                            required />
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="expenseAmount">
+                            Amount
+                        </label>
+
+                        <input
+                            type="number"
+                            id="expenseAmount"
+                            min="0"
+                            step="0.01"
+                            placeholder="0.00"
+                            required />
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="expenseCategory">
+                            Category
+                        </label>
+
+                        <select
+                            id="expenseCategory"
+                            required>
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="expenseSubcategory">
+                            Subcategory
+                        </label>
+
+                        <select
+                            id="expenseSubcategory">
+
+                            <option value="">
+                                Select subcategory
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group expense-description">
+
+                        <label for="expenseDescription">
+                            Description
+                        </label>
+
+                        <input
+                            type="text"
+                            id="expenseDescription"
+                            placeholder="Example: Cement - 20 bags" />
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-form-actions">
+
+                    <button
+                        type="button"
+                        id="cancelExpenseButton"
+                        class="secondary-button">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        id="saveExpenseButton"
+                        class="primary-button">
+
+                        Save Expense
+
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="expenseMessage"
+                    class="project-message">
+                </p>
+
+            </form>
+
+        </div>
+
+
+        <!-- EXPENSE LIST -->
+
+        <div class="expenses-section">
+
+            <div class="expenses-section-header">
+
+                <h3>Expenses</h3>
+
+                <span id="expensePeriodLabel">
+                    All expenses
+                </span>
+
+            </div>
+
+
+            <div
+                id="expensesContainer"
+                class="expenses-container">
+            </div>
+
+
+            <div
+                id="noExpensesMessage"
+                class="no-projects hidden">
+
+                <div class="empty-project-icon">
+                    💰
+                </div>
+
+                <h3>No expenses found</h3>
+
+                <p>
+                    Add your first expense to this project.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
 
 
     <script

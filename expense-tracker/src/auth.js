@@ -1,59 +1,90 @@
 import { supabase } from "./supabase.js";
 
+
 export async function signUp(
     email,
     password,
     displayName
 ) {
+
     const {
         data,
         error
-    } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-            data: {
-                display_name: displayName
+    } =
+        await supabase.auth.signUp({
+
+            email,
+
+            password,
+
+            options: {
+                data: {
+                    display_name: displayName
+                }
             }
-        }
-    });
+        });
+
+
     if (error) {
         throw error;
     }
+
+
     return data;
 }
+
 
 export async function signIn(
     email,
     password
 ) {
+
     const {
         data,
         error
-    } = await supabase.auth.signInWithPassword({
-        email,
-        password
-    });
+    } =
+        await supabase.auth.signInWithPassword({
+
+            email,
+
+            password
+        });
+
+
     if (error) {
         throw error;
     }
+
+
     return data;
 }
 
+
 export async function signOut() {
+
     const {
         error
-    } = await supabase.auth.signOut();
+    } =
+        await supabase.auth.signOut({
+            scope: "local"
+        });
+
+
     if (error) {
         throw error;
     }
 }
 
+
 export async function getCurrentUser() {
+
     const {
         data: {
             user
         }
-    } = await supabase.auth.getUser();
+    } =
+        await supabase.auth.getUser();
+
+
     return user;
 }

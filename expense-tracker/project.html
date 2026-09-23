@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Expense Overview</title>
+
+    <link
+        rel="stylesheet"
+        href="/src/style.css"
+    />
+
+</head>
+
+
+<body>
+
+    <main
+        id="projectPage"
+        class="projects-page">
+
+
+        <!-- ================================
+             HEADER
+        ================================= -->
+
+        <header class="app-header">
+
+    <div class="app-brand">
+
+        <button
+            type="button"
+            id="backButton"
+            class="back-button">
+            ←
+        </button>
+
+        <div class="small-brand-icon">
+            ₹
+        </div>
+
+        <div>
+            <h1 id="projectTitle">Expense Project</h1>
+
+            <span id="projectDescription">
+                Track your project expenses.
+            </span>
+        </div>
+
+    </div>
+
+    <button
+        type="button"
+        id="logoutButton"
+        class="logout-button">
+        Sign Out
+    </button>
+
+</header>
+
+<!-- ========================================
+     CATEGORY MANAGEMENT
+========================================= -->
+
+<section class="category-management-card">
+
+    <div class="section-header">
+
+        <div>
+            <h2>Categories</h2>
+
+            <p>
+                Manage categories and subcategories
+                for this project.
+            </p>
+        </div>
+
+        <button
+            type="button"
+            id="manageCategoriesButton"
+            class="primary-button">
+
+            + Manage Categories
+
+        </button>
+
+    </div>
+
+
+    <!-- CATEGORY MANAGEMENT PANEL -->
+
+    <div
+        id="categoryManagementPanel"
+        class="category-management-panel hidden">
+
+
+        <!-- CREATE CATEGORY -->
+
+        <div class="category-create-section">
+
+            <h3>Add Category</h3>
+
+            <div class="inline-form">
+
+                <input
+                    type="text"
+                    id="newCategoryName"
+                    placeholder="Category name" />
+
+                <button
+                    type="button"
+                    id="createCategoryButton"
+                    class="primary-button">
+
+                    Add Category
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CATEGORY LIST -->
+
+        <div
+            id="categoryManagementList"
+            class="category-management-list">
+        </div>
+
+
+        <p
+            id="categoryMessage"
+            class="category-message">
+        </p>
+
+    </div>
+
+</section>
+
+        <!-- ================================
+             MAIN CONTENT
+        ================================= -->
+
+        <section class="projects-container">
+
+
+            <!-- PAGE HEADING -->
+
+            <div class="projects-heading">
+
+                <div>
+
+                    <h2>
+                        Expense Overview
+                    </h2>
+
+                    <p>
+                        Track and manage your project expenses.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="addExpenseButton"
+                    class="primary-button">
+
+                    + Add Expense
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ================================
+                 SUMMARY
+            ================================= -->
+
+            <div class="summary-grid">
+
+
+                <div class="summary-card">
+
+                    <span class="summary-label">
+                        Total Expenses
+                    </span>
+
+                    <strong id="totalExpenses">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span class="summary-label">
+                        This Month
+                    </span>
+
+                    <strong id="thisMonthTotal">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span class="summary-label">
+                        Number of Expenses
+                    </span>
+
+                    <strong id="expenseCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ================================
+                 MONTH FILTER
+            ================================= -->
+
+            <div class="expense-toolbar">
+
+                <div>
+
+                    <label for="monthFilter">
+                        Month
+                    </label>
+
+                    <input
+                        type="month"
+                        id="monthFilter"
+                    />
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="allExpensesButton"
+                    class="secondary-button">
+
+                    All Expenses
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ================================
+                 EXPENSE FORM
+            ================================= -->
+
+            <div
+                id="expenseFormCard"
+                class="project-form-card hidden">
+
+
+                <h3>
+                    Add Expense
+                </h3>
+
+
+                <form id="expenseForm">
+
+
+                    <div class="expense-form-grid">
+
+
+                        <!-- DATE -->
+
+                        <div class="form-group">
+
+                            <label for="expenseDate">
+                                Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="expenseDate"
+                                required
+                            />
+
+                        </div>
+
+
+                        <!-- AMOUNT -->
+
+                        <div class="form-group">
+
+                            <label for="expenseAmount">
+                                Amount
+                            </label>
+
+                            <input
+                                type="number"
+                                id="expenseAmount"
+                                placeholder="0.00"
+                                min="0"
+                                step="0.01"
+                                required
+                            />
+
+                        </div>
+
+
+                        <!-- CATEGORY -->
+
+                        <div class="form-group">
+
+                            <label for="expenseCategory">
+                                Category
+                            </label>
+
+                            <select
+                                id="expenseCategory"
+                                required
+                            >
+
+                                <option value="">
+                                    Select category
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- SUBCATEGORY -->
+
+                        <div class="form-group">
+
+                            <label for="expenseSubcategory">
+                                Subcategory
+                            </label>
+
+                            <select
+                                id="expenseSubcategory"
+                            >
+
+                                <option value="">
+                                    Select subcategory
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-group expense-description">
+
+                        <label for="expenseDescription">
+                            Description
+                        </label>
+
+                        <input
+                            type="text"
+                            id="expenseDescription"
+                            placeholder="Example: Cement - 20 bags"
+                        />
+
+                    </div>
+
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="project-form-actions">
+
+                        <button
+                            type="button"
+                            id="cancelExpenseButton"
+                            class="secondary-button">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            id="saveExpenseButton"
+                            class="primary-button">
+
+                            Save Expense
+
+                        </button>
+
+                    </div>
+
+
+                    <p
+                        id="expenseMessage"
+                        class="project-message">
+                    </p>
+
+
+                </form>
+
+            </div>
+
+
+
+            <!-- ================================
+                 EXPENSE LIST
+            ================================= -->
+
+            <div class="expenses-section">
+
+
+                <div class="expenses-section-header">
+
+                    <h3>
+                        Expenses
+                    </h3>
+
+                    <span id="expenseFilterLabel">
+                        All expenses
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="expensesList"
+                    class="expenses-list">
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <script
+        type="module"
+        src="/src/project.js">
+    </script>
+
+
+</body>
+
+</html>
